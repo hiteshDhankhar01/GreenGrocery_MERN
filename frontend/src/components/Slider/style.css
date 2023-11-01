@@ -1,0 +1,79 @@
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    padding: 2rem 1.5rem;
+    background-image: url('../../assets/image/right-arrow.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.swiper-button-next::after {
+    display: none;
+}
+
+.swiper-button-prev::after {
+    display: none;
+}
+
+.swiper-button-prev {
+    rotate: 180deg;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sample-slider>.swiper-button {
+    width: 55px;
+    height: 55px;
+}
+
+.categorySlider>.swiper>.swiper-wrapper>.swiper-slide{
+    height: fit-content;
+}
+
+
+.categorySlider>.swiper>.swiper-wrapper{
+    padding-top: 1rem;
+}
+
+/* .swiper-button-next{
+    background-image: url("../../assets//image/right-arrow.png");
+}
+
+.swiper-button-prev{
+    background-image: url("../../assets//image/right-arrow.png");
+    rotate: 180deg;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    background-image: url("../../assets//image/right-arrow.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev,
+::after {
+    display: none;
+}
+
+ */

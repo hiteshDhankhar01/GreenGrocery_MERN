@@ -1,0 +1,70 @@
+#app {
+    height: 100%;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* .swiper-button-prev {
+    margin-left: 2px;
+
+}
+
+.swiper-button-next {
+    margin-right: 2px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    padding: 2rem 1.5rem;
+    background-color: rgba(255, 255, 255, .2);
+    color: green;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+} */
+
+.vcv{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.vvv{
+    font-weight: 500;
+}
