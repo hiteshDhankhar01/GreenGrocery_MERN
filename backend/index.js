@@ -7,7 +7,7 @@ const authRouter = require("./Router/auth");
 //const User = require("./models/userScema")
 const userRouter = require("./Router/user")
 const productRouter = require("./Router/product")
-const  payment = require("./Router/payment")
+const payment = require("./Router/payment")
 
 
 
@@ -18,7 +18,7 @@ const port = process.env.PORT || 7000;
 const app = express();
 
 const connectDB = async () => {
-    try { 
+    try {
         const mongoURI = process.env.MONGO_URL;
 
         // Connect to the MongoDB database
@@ -42,6 +42,9 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/payment', payment)
+app.use('/', (req, res) => {
+    res.send("serveris running")
+})
 
 app.listen(port, () => {
     connectDB();
