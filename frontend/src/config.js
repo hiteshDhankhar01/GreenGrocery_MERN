@@ -1,1 +1,1 @@
-export const BASE_URL = "http://127.0.0.1:7000/api/v1"
+export const BASE_URL = "https://vercel.com/hitesh07hiteshs-projects/green-grocery-mern/BB8G3GT7hHvDgSTAHCrqRYdGVYLZ/api/v1"
