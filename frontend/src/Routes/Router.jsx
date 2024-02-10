@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/home"
+import Home from "../pages/Home"
 import About from "../pages/About"
 import Contact from "../pages/Contact"
 import Service from "../pages/Service"
@@ -10,11 +10,9 @@ import ProductDetails from "../pages/ProductDetails";
 import FruitVe from "../components/FruitVe/FruitVe";
 import MyCart from "../pages/MyCart";
 import Payment from "../pages/Payment";
-import { toast } from "react-toastify"
 import MyOrders from "../pages/MyOrders";
 import AddProduct from "../pages/AddProduct";
 import PageNotFound from "../pages/PageNotFound";
-// import ReviewForm from "../pages/ReviewForm";
 
 const Router = () => {
 
