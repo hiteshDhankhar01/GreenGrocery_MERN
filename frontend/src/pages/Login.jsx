@@ -1,7 +1,7 @@
 import { BASE_URL } from "../config"
 import { useState, useContext } from "react"
 import { BiHide, BiShow } from "react-icons/bi"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { PulseLoader } from "react-spinners"
 import { toast } from "react-toastify"
 import { authContext } from "../context/Authcontext"
@@ -32,7 +32,6 @@ const Login = () => {
     const submitData = async (e) => {
         e.preventDefault()
         setLoading(true)
-        // console.log(formData)
 
         try {
             const res = await fetch(`${BASE_URL}/auth/login`,
@@ -56,7 +55,6 @@ const Login = () => {
                 }
             })
 
-            console.log(res, "login done")
             setLoading(false)
             toast.success(message)
             navigate('/')
@@ -69,13 +67,13 @@ const Login = () => {
     }
     return (
         <div className='py-[4rem]'>
-            <div className="box flex justify-center h-[24rem] mx-[4rem] border-[2px] border-[#329967] items-center">
-                <div className='flex flex-col jsutify-center h-full text-white bg-[#329967] px-6 py-auto pb-[5rem] w-1/2'>
+            <div className="box flex justify-center h-[24rem]  md:m-[4rem] md:border-[2px] border-[#329967] items-center">
+                <div className='hidden  md:flex flex-col jsutify-center h-full text-white bg-[#329967] px-6 py-auto pb-[5rem] w-1/2'>
                     <h2 className='fw text-[4rem] '>Welcome to </h2>
                     <h2 className='fw text-[4rem]'> Online Store</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut laborum id nesciunt ducimus atque exercitationem earum molestias, quod sapiente quam cupiditate rem omnis aliquam quas dolores beatae quibusdam voluptatem quasi ad laudantium optio.</p>
                 </div>
-                <div className=' w-1/2 m-[1rem]'>
+                <div className='w-full md:w-1/2 m-[1rem]'>
                     <h2 className='fw bg-[#329967] text-[2rem] text-white rounded-[2rem] w-fit px-4'>Login</h2>
                     <div className="form-box mt-[1rem] login">
                         <form onSubmit={submitData}>
@@ -99,7 +97,7 @@ const Login = () => {
                                     <button
                                         type="button"
                                         onClick={togglePasswordVisibility}
-                                        className="absolute top-0 right-0 h-full px-2 flex items-center cursor-pointer"
+                                        className="absolute top-0 right-0 h-full px-2 flex items-center cursor-pointer transform-none shadow-none " style={{ boxShadow: "none", transform: "scale(1)" }}
                                     >
                                         {formData.showPassword ? <BiShow style={{ width: "1.5rem", height: "2rem", color: "#329967" }} /> : <BiHide style={{ width: "1.5rem", height: "2rem", color: "#329967" }} />}
                                     </button>
@@ -109,7 +107,7 @@ const Login = () => {
                                 <button disabled={loading} type="submit" className="w-fit bg-[#329967] text-white font-semibold py-2 px-4 rounded-[2rem] ">{loading ? <PulseLoader size={10} color="white" /> : 'Login'}</button>
                             </div>
 
-                            <p className='text-black mt-[1rem] text-center'>Dont have a account? <a href="/register" className='text-blue-500'>Register</a></p>
+                            <p className='text-black mt-[1rem] text-center'>Dont have a account? <NavLink to="/register" className='text-blue-500 hover:border-b-[1px] border-blue-500'>Register</NavLink></p>
 
                         </form>
                     </div>

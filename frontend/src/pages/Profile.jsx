@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react"
-//import defaultProfile from "../assets/image/defaultProfile.jpg"
 import { authContext } from "../context/Authcontext"
 import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "../config"
@@ -46,14 +45,12 @@ const Profile = () => {
             })
 
             navigate('/')
-            console.log(res)
         } catch (error) {
 
             console.log(error)
         }
     }
 
-    //===================================
     const [selectedFile, setSelectedFile] = useState(null)
     const [previewURL, setPreviewURL] = useState("")
 
@@ -68,7 +65,6 @@ const Profile = () => {
     const handelFileInputchange = async (e) => {
         const file = e.target.files[0]
         const data = await uploadImageToCloudinary(file)
-        // console.log(data)
         setPreviewURL(data.url)
         setSelectedFile(data.url)
         setFormData({ ...formData, photo: data.url })
@@ -87,21 +83,18 @@ const Profile = () => {
     const getUserDetails = async () => {
         let result = await fetch(`${BASE_URL}/user/${user?._id}`)
         result = await result.json()
-        console.log(result)
         setFormData({
-            name: result.name,
-            email: result.email,
-            password: result.password,
-            photo: result.photo
+            name: result.name || "",
+            email: result.email || "",
+            password: result.password || "",
+            photo: result.photo || ""
         })
     }
 
-    //==============================================================
 
     const updateData = async event => {
         event.preventDefault();
         setLoading(true)
-        // console.log(formData);
         try {
             const res = await fetch(`${BASE_URL}/user/update/${user?._id}`, {
                 method: "put",

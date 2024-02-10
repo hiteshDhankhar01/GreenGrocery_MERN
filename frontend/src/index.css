@@ -15,7 +15,7 @@
 }
 
 @media only screen and (max-width:768px){
-  .container {
+  /* .container {
     @apply w-full mx-auto bg-[#eee]
-  }
+  } */
 }

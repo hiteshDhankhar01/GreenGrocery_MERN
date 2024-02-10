@@ -56,22 +56,22 @@ const Footer = () => {
     return (
         <>
             <div className="border-t-[1px] border-[#eee]"></div>
-            <footer className=" container bg-white p-4 text-black text-center flex flex-row  pt-2">
+            <footer className=" containerzz bg-white p-4 text-black text-center flex flex-row  pt-2">
 
                 <div className=" mx-auto lg:w-2/5">
-                    <div >&copy; {new Date().getFullYear()} Your Company. All rights reserved.</div>
+                    <div >&copy; {new Date().getFullYear()} GreenGrocery All rights reserved.</div>
 
                     <div className="flex items-center gap-2 justify-center">
-                        <button className="bg-[transparent] rounded-[2rem]  p-1">
+                        <button className="bg-[transparent] rounded-[12px]  p-1">
                             <AiOutlineInstagram style={{ width: "2rem", height: "2rem" }} />
                         </button>
-                        <button className="bg-[transparent] rounded-[2rem] p-1">
+                        <button className="bg-[transparent] rounded-[12px] p-1">
                             <AiOutlineFacebook style={{ width: "2rem", height: "2rem" }} />
                         </button>
-                        <button className="bg-[transparent] rounded-[2rem]  p-1">
+                        <button className="bg-[transparent] rounded-[12px]  p-1">
                             <AiOutlineTwitter style={{ width: "2rem", height: "2rem" }} />
                         </button>
-                        <button className="bg-[transparent] rounded-[2rem]  p-1">
+                        <button className="bg-[transparent] rounded-[12px]  p-1">
                             <AiOutlineYoutube style={{ width: "2rem", height: "2rem" }} />
                         </button>
 

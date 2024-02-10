@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import ProductCard from '../product/ProductCard';
 import { authContext } from '../../context/Authcontext';
-import { BASE2_URL } from '../../config';
+import { BASE_URL } from '../../config';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -23,7 +23,7 @@ const Slider = (props) => {
 
     const getAllProduct = async () => {
         try {
-            const response = await fetch(`${BASE2_URL}/product/findProducts?key=${props.productCategory}`, {
+            const response = await fetch(`${BASE_URL}/product/findProducts?key=${props.productCategory}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
@@ -44,15 +44,32 @@ const Slider = (props) => {
         <div>
             <div className="categorySlider">
                 <Swiper
-                    slidesPerView={5}
-                    spaceBetween={30}
+                    // slidesPerView={5}
+                    // spaceBetween={30}
+                    slidesPerView={1}
+                    spaceBetween={10}
+
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 50,
+                        },
+                    }}
                     navigation={true}
                     autoplay={{
                         delay: 15000,
                         disableOnInteraction: false,
                     }}
                     modules={[Autoplay, Navigation, Virtual]}
-                    className="mySwiper h-[21rem] px-[1.8rem]"
+                    className="mySwiper h-[14rem] md:h-[21rem] px-[1.8rem]"
                 >
                     {products.map((product, index) => (
                         <SwiperSlide key={product._id} virtualIndex={index}>

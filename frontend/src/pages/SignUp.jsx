@@ -1,16 +1,19 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { BiHide, BiShow } from "react-icons/bi"
 // import { BiShow } from "react-icons/bi"
 import { BASE_URL } from "../config"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { PulseLoader } from "react-spinners"
 import { toast } from "react-toastify"
 import uploadImageCloudinary from "../utils/cloudinary..js"
+import { authContext } from "../context/Authcontext.jsx"
+
 
 const SignUp = () => {
     // const [name,setName] = useState("");
     // const [email,setEmail] = useState("");
     // const [password,setPassword] = useState("");
+    const { dispatch } = useContext(authContext)
 
     const [selectedFile, setSelectedFile] = useState(null)
     const [previewURL, setPreviewURL] = useState("")
@@ -26,7 +29,6 @@ const SignUp = () => {
     const handelFileInputchange = async (e) => {
         const file = e.target.files[0]
         const data = await uploadImageCloudinary(file)
-        // console.log(data)
         setPreviewURL(data.url)
         setSelectedFile(data.url)
         setFormData({ ...formData, photo: data.url })
@@ -41,21 +43,30 @@ const SignUp = () => {
     const submitData = async event => {
         event.preventDefault();
         setLoading(true)
-        // console.log(formData);
         try {
             const res = await fetch(`${BASE_URL}/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
             })
-            const { message } = await res.json()
+            const { message, user, token } = await res.json()
 
             if (!res.ok) {
                 throw new Error(message)
             }
+
+            dispatch({
+                type: "LOGIN_SUCCESS",
+                payload: {
+                    user: user,
+                    token: token
+                }
+            })
+
+
             setLoading(false)
             toast.success(message)
-            navigate('/login')
+            navigate('/')
         } catch (error) {
             toast.error(error.message)
             setLoading(false)
@@ -72,13 +83,13 @@ const SignUp = () => {
 
     return (
         <div className='py-[4rem]'>
-            <div className="box flex justify-center h-[28rem] mx-[4rem] border-[2px] border-[#329967] items-center">
-                <div className='flex flex-col jsutify-center h-full text-white bg-[#329967] px-6 py-auto pb-[5rem] w-1/2'>
+            <div className="box flex justify-center h-[28rem] md:m-[4rem] md:border-[2px] border-[#329967] items-center">
+                <div className='hidden md:flex flex-col jsutify-center h-full text-white bg-[#329967] px-6 py-auto pb-[5rem] w-1/2'>
                     <h2 className='fw text-[4rem] '>Welcome to </h2>
                     <h2 className='fw text-[4rem]'> Online Store</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut laborum id nesciunt ducimus atque exercitationem earum molestias, quod sapiente quam cupiditate rem omnis aliquam quas dolores beatae quibusdam voluptatem quasi ad laudantium optio.</p>
                 </div>
-                <div className=' w-1/2 m-[1rem]'>
+                <div className='w-full md:w-1/2 m-[1rem]'>
                     <h2 className='fw bg-[#329967] text-[2rem] text-white rounded-[2rem] w-fit px-4'>Register</h2>
                     <div className="form-box mt-[1rem] login">
                         <form onSubmit={submitData} method="post">
@@ -107,7 +118,7 @@ const SignUp = () => {
                                     <button
                                         type="button"
                                         onClick={togglePasswordVisibility}
-                                        className="absolute top-0 right-0 h-full px-2 flex items-center cursor-pointer"
+                                        className="absolute top-0 right-0 h-full px-2 flex items-center cursor-pointer " style={{ boxShadow: "none", transform: "scale(1)" }}
                                     >
                                         {formData.showPassword ? <BiShow style={{ width: "1.5rem", height: "2rem", color: "#329967" }} /> : <BiHide style={{ width: "1.5rem", height: "2rem", color: "#329967" }} />}
                                     </button>
@@ -137,7 +148,7 @@ const SignUp = () => {
 
                             </div> */}
 
-                            <p className='text-black mt-[1rem] text-center'>Dont have a account? <a href="/login" className='text-blue-500'>Login</a></p>
+                            <p className='text-black mt-[1rem] text-center'>Dont have a account? <NavLink to="/login" className='text-blue-500 hover:border-b-[1px] border-blue-500'>Login</NavLink></p>
 
                         </form>
                     </div>

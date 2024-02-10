@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userScema");
 const jwt = require('jsonwebtoken');
-
+const dotenv = require("dotenv").config()
 
 const gernateToken = user => {
     return jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY,
@@ -31,7 +31,7 @@ const register = async (req, res) => {
         await createUser.save();
 
         user = createUser.toObject()
-        delete createUser.password
+        delete user.password
 
         const token = gernateToken(createUser)
         res.status(200).json({ message: "Registration successful", user, token });

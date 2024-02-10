@@ -17,8 +17,31 @@ const UserScema = new mongoose.Schema({
     photo: {
         type: String,
         required: true
-    }
+    },
+    cart: [
+        {
+            itemId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+            itemName: String,
+            itemImage: String,
+            itemPrice: Number,
+            itemQuantity: String,
+            quantity: Number
+        }
+    ],
+    order: [
+        {
+            itemId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+            itemName: String,
+            itemImage: String,
+            itemPrice: Number,
+            itemQuantity: String,
+            quantity: Number,
+            createdAt: { type: Date, default: Date.now }
+        },
+        { timestamps: true }
+    ]
 });
+
 
 const User = mongoose.model("User", UserScema);
 

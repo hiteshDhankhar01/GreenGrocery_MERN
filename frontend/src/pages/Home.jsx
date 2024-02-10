@@ -6,8 +6,13 @@ import gif from "../assets/image/fruitGIF.gif"
 // import Fruit2 from "../components/Fruit2/Fruit2"
 // import FruitsAll from "./FruitsAll"
 import Slider from "../components/Slider/Slider"
+import { NavLink } from "react-router-dom"
 
 const buttonNames = [
+    {
+        name: "All",
+        link: "/all"
+    },
     {
         name: "Fruits",
         link: "/fruits"
@@ -16,14 +21,7 @@ const buttonNames = [
         name: "Vegitabels",
         link: "/vegetabels"
     },
-    {
-        name: "Preamiam ",
-        link: "/asd"
-    },
-    {
-        name: "Seasonal",
-        link: "/asdf"
-    },
+    
 ]
 
 const home = () => {
@@ -33,12 +31,12 @@ const home = () => {
 
 
             <div className="px-[1.5rem] ">
-                <div className="mt-4 bacgrounImage flex gap-8 mt-[3rem] mb-[1.6rem]">
+                <div className="overflow-y-scroll bacgrounImage flex gap-8 mt-4 md:mt-[3rem] mb-[1.6rem] scrollbar-width: none -ms-overflow-style: none">
                     {buttonNames.map((item, index) => (
-                        <button key={index} className="border-2 text-[2rem] border-[#329967] rounded-[1.2rem] h-[4rem] w-fit px-4 bg-green-50 shadow-none text-[#329967] hover:bg-[#329967] hover:text-white" style={{ boxShadow: "none", transform: "scale(1)" }}>
-                            <a href={item.link}>
+                        <button key={index} className="border-2 text-[1.4rem] md:text-[2rem] border-[#329967] rounded-[1.2rem] h-[2rem] md:h-[4rem] w-fit px-4 bg-green-50 shadow-none text-[#329967] hover:bg-[#329967] hover:text-white items-center py-auto" style={{ boxShadow: "none", transform: "scale(1)" }}>
+                            <NavLink to={item.link} className={`flex items-center `}>
                                 {item.name}
-                            </a>
+                            </NavLink>
                         </button>
                     ))}
                 </div>
@@ -47,7 +45,7 @@ const home = () => {
                 <div className="mt-4 bacgrounImage bg-gray-100  rounded-[2px]">
                     <div className="flex flex-row items-center justify-between pt-2 mx-4 border-b-[2px]">
                         <h1 className="text-[2rem]">Fruits</h1>
-                        <a className="text-[1rem] hover:text-[#329967]" href="/fruits">View All</a>
+                        <NavLink className="text-[1rem] hover:text-[#329967]" to="/fruits">View All</NavLink>
                     </div>
                     <Slider productCategory="fruit" />
                 </div>
@@ -56,7 +54,7 @@ const home = () => {
                 <div className="mt-4 bacgrounImage bg-gray-100  rounded-[2px]">
                     <div className="flex flex-row items-center justify-between pt-2 mx-4 border-b-[2px]">
                         <h1 className="text-[2rem]">Vegetabeles</h1>
-                        <a className="text-[1rem] hover:text-[#329967]" href="/fruits">View All</a>
+                        <NavLink className="text-[1rem] hover:text-[#329967]" to="/vegetabels">View All</NavLink>
                     </div>
                     <Slider productCategory="vegetable" />
                 </div>
@@ -93,3 +91,4 @@ const home = () => {
 }
 
 export default home
+
