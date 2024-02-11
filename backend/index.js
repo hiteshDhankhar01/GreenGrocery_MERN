@@ -32,7 +32,13 @@ const connectDB = async () => {
 };
 
 // Middleware for CORS - should be placed before route handlers
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https://green-grocery-mern-2un1.vercel.app"],
+        methods:["POST","GET","DELETE","PUT"],
+        credentials:true
+    }
+));
 
 // Middleware for parsing JSON
 app.use(express.json());

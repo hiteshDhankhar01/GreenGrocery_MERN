@@ -10,7 +10,6 @@ import 'swiper/css/autoplay';
 import './style.css';
 import { Autoplay, Navigation, Virtual } from 'swiper/modules';
 import PropTypes from 'prop-types';
-import header from '../../next.config'
 
 
 const Slider = (props) => {
@@ -27,8 +26,7 @@ const Slider = (props) => {
             const response = await fetch(`${BASE_URL}/product/findProducts?key=${props.productCategory}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                    header
+                    Authorization: `Bearer ${token}`
                 },
             });
             if (!response.ok) {
