@@ -85,9 +85,9 @@ const SignUp = () => {
         <div className='py-[4rem]'>
             <div className="box flex justify-center h-[28rem] md:m-[4rem] md:border-[2px] border-[#329967] items-center">
                 <div className='hidden md:flex flex-col jsutify-center h-full text-white bg-[#329967] px-6 py-auto pb-[5rem] w-1/2'>
-                    <h2 className='fw text-[4rem] '>Welcome to </h2>
-                    <h2 className='fw text-[4rem]'> Online Store</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut laborum id nesciunt ducimus atque exercitationem earum molestias, quod sapiente quam cupiditate rem omnis aliquam quas dolores beatae quibusdam voluptatem quasi ad laudantium optio.</p>
+                <h2 className='fw text-[3rem] '>Welcome to </h2>
+                    <h2 className='fw text-[2rem]'> GreenGrocery Store</h2>
+                    <p>Discover the freshest selection of hand-picked fruits and vegetables, delivered straight from the farm to your doorstep. We’re committed to providing you with top-quality produce, ensuring that every bite is as fresh and nutritious as it should be. Shop with us for the healthiest choices, sustainably sourced and always fresh.</p>
                 </div>
                 <div className='w-full md:w-1/2 m-[1rem]'>
                     <h2 className='fw bg-[#329967] text-[2rem] text-white rounded-[2rem] w-fit px-4'>Register</h2>

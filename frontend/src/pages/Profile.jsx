@@ -28,6 +28,10 @@ const Profile = () => {
     }
 
     const deleteAccount = async () => {
+        if (user?._id === "66f3bbcfef244da6c308922e") {
+            toast.error("This is a guest account")
+            return
+        }
         try {
             const res = await fetch(`${BASE_URL}/user/delete/${user?._id}`,
                 {
@@ -105,9 +109,9 @@ const Profile = () => {
                 body: JSON.stringify(formData)
             })
 
-            
 
-            const { message} = await res.json()
+
+            const { message } = await res.json()
 
             if (!res.ok) {
                 throw new Error(message)
