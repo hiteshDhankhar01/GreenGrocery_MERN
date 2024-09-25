@@ -30,7 +30,7 @@ const SliderCard = () => {
                 }}
                 
                 modules={[Autoplay, Pagination,]}
-                className="mySwiper h-[15rem] md:h-[21rem] mt-[4rem]"
+                className="mySwiper h-[15rem] md:h-[21rem] pb-2"
             >
                 <SwiperSlide>
                     <div className="vcv" style={{ backgroundImage: `url(${Slider1})` }}>

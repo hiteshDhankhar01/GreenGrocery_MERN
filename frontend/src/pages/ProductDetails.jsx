@@ -69,7 +69,7 @@ const ProductDetails = () => {
             <div className="p-4 flex flex-col items-center">
                 {product && (
                     <div className="w-[80%] mx-auto flex items-center text-center px-auto ">
-                        <div className="flex text-center px-auto">
+                        <div className="flex text-center px-auto flex-col md:flex-row">
                             <div className="image f-1/2 mr-[2rem]">
                                 <div className="h-[25rem] w-[25rem] ">
                                     <img src={product.image} alt={product.name} className=" w-full h-full object-cover rounded-[1rem]" />

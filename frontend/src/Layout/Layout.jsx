@@ -5,9 +5,8 @@ import Footer from "../components/Footer/Footer"
 const Layout = () => {
     return (
         <>
-            {/* <Header /> */}
             <Header />
-            <main className="bg-white containerzz min-h-[100vh] mt-[4rem]">
+            <main className="bg-white min-h-[100vh]">
                 <Routers />
             </main>
             <Footer />

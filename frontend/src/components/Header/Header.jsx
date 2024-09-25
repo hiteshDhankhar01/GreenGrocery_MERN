@@ -64,7 +64,7 @@ const HeaderPro = () => {
 
     return (
         <div>
-            <div className="fixed top-0 left-0 right-0 py-3 mx-auto bg-[#eee] [#329967] flex justify-between items-center z-50">
+            <div className="stickey top-0 left-0 right-0 py-3 mx-auto bg-[#eee] [#329967] flex justify-between items-center z-50">
                 {/* Logo */}
                 <div className="text-black pl-2 flex">
                     <NavLink to="/" className="relative  flex my-auto ">

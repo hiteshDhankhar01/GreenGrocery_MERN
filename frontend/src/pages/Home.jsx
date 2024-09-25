@@ -26,14 +26,11 @@ const buttonNames = [
 
 const home = () => {
     return (
-        <>
-            <SliderCard />
-
-
+        <>  <SliderCard />
             <div className="px-[1.5rem] ">
-                <div className="overflow-y-scroll bacgrounImage flex gap-8 mt-4 md:mt-[3rem] mb-[1.6rem] scrollbar-width: none -ms-overflow-style: none">
+                <div className="overflow-y-scroll bacgrounImage flex gap-8 mb-2 scrollbar-width: none -ms-overflow-style:none">
                     {buttonNames.map((item, index) => (
-                        <button key={index} className="border-2 text-[1.4rem] md:text-[2rem] border-[#329967] rounded-[1.2rem] h-[2rem] md:h-[4rem] w-fit px-4 bg-green-50 shadow-none text-[#329967] hover:bg-[#329967] hover:text-white items-center py-auto" style={{ boxShadow: "none", transform: "scale(1)" }}>
+                        <button key={index} className="border-2 text-[1.2rem] md:text-[1.2rem] border-[#329967] rounded-[1.2rem] h-[2.2rem] w-fit px-4 bg-green-50 shadow-none text-[#329967] hover:bg-[#329967] hover:text-white items-center py-auto" style={{ boxShadow: "none", transform: "scale(1)" }}>
                             <NavLink to={item.link} className={`flex items-center `}>
                                 {item.name}
                             </NavLink>

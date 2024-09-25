@@ -38,6 +38,7 @@ const Profile = () => {
                     method: "delete",
                     headers: { 'Content-Type': 'application/json' },
                 }
+
             )
             localStorage.clear()
             dispatch({
@@ -48,6 +49,14 @@ const Profile = () => {
                 }
             })
 
+
+            const { message } = await res.json()
+
+            if (!res.ok) {
+                throw new Error(message)
+            }
+            setLoading(false)
+            toast.success(message)
             navigate('/')
         } catch (error) {
 
@@ -77,8 +86,6 @@ const Profile = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
-    //==============================================================
 
     useEffect(() => {
         getUserDetails()
@@ -144,34 +151,56 @@ const Profile = () => {
     //===================================
     const { user } = useContext(authContext)
     return (
-        <div className='py-[4rem]'>
-            <div className="box flex justify-center h-[28rem] mx-[4rem] border-[2px] border-[#329967] items-center">
-                <div className='flex flex-col text-center items-center gap-1 h-full py-[4rem]  text-white bg-[#329967] w-1/2'>
-                    <img src={user?.photo} alt="" className='h-[5rem] w-[5rem] rounded-[4rem] border-[2px] border-[#329967]' />
-                    <h2 className='capitalize text-[1.2rem]'>{user?.name}</h2>
-                    <p>{user?.email}</p>
-                    <div className="mt-[4rem] flex flex-col gap-[2rem] text-[1.2rem] font-semibold ">
-                        <button className="bg-red-600 text-white px-4 py-2 rounded-[5px]"
-                            onClick={logout}>Logout</button>
-                        <button onClick={deleteAccount} className="bg-black text-white px-4 py-2 rounded-[5px]" >Delete Acccount</button>
+        <div className="py-8 sm:py-12">
+            <div className="box flex flex-col lg:flex-row justify-center h-auto lg:h-[28rem] mx-4 sm:mx-8 lg:mx-16 border-2 border-[#329967] items-center gap-2">
+                {/* Left Section */}
+                <div className="flex flex-col text-center items-center gap-4 p-4 sm:gap-2 sm:py-8 text-white bg-[#329967] w-full lg:w-1/2 h-full ">
+                    <img src={user?.photo} alt="" className="h-20 w-20 sm:h-24 sm:w-24 rounded-full border-2 border-white" />
+                    <h2 className="capitalize text-xl sm:text-2xl">{user?.name}</h2>
+                    <p className="text-sm sm:text-base">{user?.email}</p>
+                    <div className="mt-6 flex flex-col gap-4 text-base sm:text-lg font-semibold">
+                        <button className="bg-red-600 text-white px-4 py-2 rounded-lg" onClick={logout}>
+                            Logout
+                        </button>
+                        <button onClick={deleteAccount} className="bg-black text-white px-4 py-2 rounded-lg">
+                            Delete Account
+                        </button>
                     </div>
                 </div>
-                <div className=' w-1/2 m-[1rem] '>
-                    <h2 className='fw bg-[#329967] text-[2rem] text-white rounded-[2rem] w-fit px-4'>Profile</h2>
-                    <div className="form-box mt-[1rem] login">
+
+                {/* Right Section */}
+                <div className="w-full lg:w-1/2 mt-4 lg:mt-0 p-2">
+                    <h2 className="bg-[#329967] text-2xl sm:text-3xl text-white rounded-lg w-fit px-4 py-2">Profile</h2>
+                    <div className="form-box mt-4 login">
                         <form onSubmit={updateData} method="post">
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-[1.1rem] mb-2">Name</label>
-                                <input type="text" onChange={handleInputChange} value={formData.name} id="name" name="name" className=" text-black w-full px-3 py-2 bb-[2px] rounded-lg border-b-[1px] focus:outline-none focus-border-none border-[#329967]"
-                                    placeholder={user?.name} />
+                                <label className="block text-gray-700 text-base sm:text-lg mb-2">Name</label>
+                                <input
+                                    type="text"
+                                    onChange={handleInputChange}
+                                    value={formData.name}
+                                    id="name"
+                                    name="name"
+                                    className="text-black w-full px-3 py-2 border-b-2 rounded-lg focus:outline-none focus:border-[#329967] border-gray-300"
+                                    placeholder={user?.name}
+                                />
                             </div>
+
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-[1.1rem] mb-2">Email</label>
-                                <input type="email" onChange={handleInputChange} value={formData.email} id="email" name="email" className=" text-black w-full px-3 py-2 bb-[2px] rounded-lg border-b-[1px] focus:outline-none focus-border-none border-[#329967]"
-                                    placeholder={user?.email} />
+                                <label className="block text-gray-700 text-base sm:text-lg mb-2">Email</label>
+                                <input
+                                    type="email"
+                                    onChange={handleInputChange}
+                                    value={formData.email}
+                                    id="email"
+                                    name="email"
+                                    className="text-black w-full px-3 py-2 border-b-2 rounded-lg focus:outline-none focus:border-[#329967] border-gray-300"
+                                    placeholder={user?.email}
+                                />
                             </div>
+
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-[1.1rem] mb-2">Password</label>
+                                <label className="block text-gray-700 text-base sm:text-lg mb-2">Password</label>
                                 <div className="relative">
                                     <input
                                         type={formData.showPassword ? "text" : "password"}
@@ -179,36 +208,43 @@ const Profile = () => {
                                         value={formData.password}
                                         id="password"
                                         name="password"
-                                        className="text-black w-full px-3 py-2 bb-[2px] rounded-lg border-b-[1px] focus:outline-none focus-border-none border-[#329967]"
-                                        placeholder='Enter Password'
+                                        className="text-black w-full px-3 py-2 border-b-2 rounded-lg focus:outline-none focus:border-[#329967] border-gray-300"
+                                        placeholder="Enter Password"
                                     />
                                     <button
                                         type="button"
                                         onClick={togglePasswordVisibility}
                                         className="absolute top-0 right-0 h-full px-2 flex items-center cursor-pointer"
                                     >
-                                        {formData.showPassword ? <BiShow style={{ width: "1.5rem", height: "2rem", color: "#329967" }} /> : <BiHide style={{ width: "1.5rem", height: "2rem", color: "#329967" }} />}
+                                        {formData.showPassword ? <BiShow className="w-6 h-6 text-[#329967]" /> : <BiHide className="w-6 h-6 text-[#329967]" />}
                                     </button>
                                 </div>
                             </div>
-                            <div className="mb-4 flex justify-between">
+
+                            <div className="mb-4 flex justify-between items-center">
                                 <div className="flex items-center gap-2">
                                     {selectedFile ? (
-                                        <img src={previewURL} alt="" className='h-[3rem] w-[3rem] rounded-[2rem] border-[2px] border-[#329967]' />) : (
-                                        <img src={user?.photo} alt="" className='h-[3rem] w-[3rem] rounded-[2rem] border-[2px] border-[#329967]' />)}
-                                    <div className="relative w-[110px] h-[40px]">
-                                        <input type="file"
+                                        <img src={previewURL} alt="" className="h-12 w-12 rounded-full border-2 border-[#329967]" />
+                                    ) : (
+                                        <img src={user?.photo} alt="" className="h-12 w-12 rounded-full border-2 border-[#329967]" />
+                                    )}
+                                    <div className="relative">
+                                        <input
+                                            type="file"
                                             name="photo"
                                             id="customFile"
                                             accept=".jpg, .png"
                                             onChange={handelFileInputchange}
-                                            className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
-                                        <label htmlFor="customFile" className="absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden bg-[#329967] text-white rounded-lg truncate cursor-pointer">Upload File</label>
+                                            className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                                        />
+                                        <label htmlFor="customFile" className="  bg-[#329967] text-white text-md px-3 py-2 rounded-lg text-center cursor-pointer">
+                                            Upload File
+                                        </label>
                                     </div>
                                 </div>
 
-                                <button disabled={loading} type="submit" className="w-fit bg-[#329967] text-white font-semibold py-2 px-4 rounded-[2rem] " >
-                                    {loading ? <PulseLoader color="white" size={10} /> : 'Update'}
+                                <button disabled={loading} type="submit" className="bg-[#329967] text-white font-semibold py-2 px-4 rounded-lg">
+                                    {loading ? <PulseLoader color="white" size={10} /> : "Update"}
                                 </button>
                             </div>
                         </form>
@@ -216,6 +252,7 @@ const Profile = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 
